@@ -4,6 +4,8 @@ var board = [
     ["C1", "C2", "C3"],
    ]
 
+console.log(board);
+
 function createPlayers(name, mark) {
     return {
         name: name,
@@ -18,20 +20,27 @@ function playRound() {
     let currentPlayer = playerOne;
     console.log(currentPlayer);
     let playerOneChoice = window.prompt("player one enter coordinates");
-    console.log(`player one chose ${playerOneChoice}`);
+    let playerOneChoiceUpCase = playerOneChoice.toUpperCase();
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < 3; j++) {
-        if (playerOneChoice.toUppercase = board[i][j]) {
-            board[i][j] = "X";
-        }
-        else {
-            window.alert("oops! not a choice");
-        }
+            if (board[i][j] === playerOneChoiceUpCase) {
+                board[i][j] = "X";
+                console.log (`player one chose ${playerOneChoice}!`)
+            }
         }
     }
     currentPlayer = playerTwo;
     let playerTwoChoice = window.prompt("player two enter coordinates");
-    console.log(`player two chose ${playerTwoChoice}`);
+    let playerTwoChoiceUpCase = playerTwoChoice.toUpperCase();
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (board[i][j].includes(playerTwoChoiceUpCase)) {
+                board[i][j] = "O";
+                console.log (`player two chose ${playerTwoChoice}!`)
+            }
+        }
+    }
+    console.log(board);
 }
 
 playRound();
