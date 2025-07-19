@@ -9,12 +9,13 @@ console.log(board);
 function createPlayers(name, mark) {
     return {
         name: name,
-        mark: mark
+        mark: mark,
     }
 };
 
-let playerOne = createPlayers("playerOne", "x");
-let playerTwo = createPlayers("playerTwo", "x");
+let playerOne = createPlayers("playerOne", "X");
+let playerTwo = createPlayers("playerTwo", "O");
+let winningPlayer;
 
 function playRound() {
     let currentPlayer = playerOne;
@@ -23,6 +24,8 @@ function playRound() {
     let playerOneChoiceUpCase = playerOneChoice.toUpperCase();
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < 3; j++) {
+            if (board[i][j] == "X" || board[i][j] == "O") { 
+            }
             if (board[i][j] === playerOneChoiceUpCase) {
                 board[i][j] = "X";
                 console.log (`player one chose ${playerOneChoice}!`)
@@ -49,94 +52,102 @@ function checkBoard() {
         if (board[0][0] == "X" && 
             board[0][1] == "X" &&
             board[0][2] == "X") {
-                console.log("player one wins!")
+                return winningPlayer = playerOne;
             }
         else if (board[0][0] == "O" && 
             board[0][1] == "O" &&
             board[0][2] == "O") {
-                console.log("player two wins!")
+                return winningPlayer = playerTwo;
             }
         else if (board[1][0] == "X" && 
             board[1][1] == "X" &&
             board[1][2] == "X") {
-                console.log("player one wins!")
+                return winningPlayer = playerOne;
             }
         else if (board[1][0] == "O" && 
             board[1][1] == "O" &&
             board[1][2] == "O") {
-                console.log("player two wins!")
+                return winningPlayer = playerTwo;
             }
         else if (board[2][0] == "X" && 
             board[2][1] == "X" &&
             board[2][2] == "X") {
-                console.log("player one wins!")
+                return winningPlayer = playerOne;
             }
         else if (board[2][0] == "O" && 
             board[2][1] == "O" &&
             board[2][2] == "O") {
-                console.log("player two wins!")
+                return winningPlayer = playerTwo;
             }
         else if (board[0][0] == "X" && 
             board[1][0] == "X" &&
             board[2][0] == "X") {
-                console.log("player one wins!")
+                return winningPlayer = playerOne;
             }
         else if (board[0][0] == "O" && 
             board[1][0] == "O" &&
             board[2][0] == "O") {
-                console.log("player two wins!")
+                return winningPlayer = playerTwo;
             }
         else if (board[0][1] == "X" && 
             board[1][1] == "X" &&
             board[2][1] == "X") {
-                console.log("player one wins!")
+                return winningPlayer = playerOne;
             }
         else if (board[0][1] == "O" && 
             board[1][1] == "O" &&
             board[2][1] == "O") {
-                console.log("player two wins!")
+                return winningPlayer = playerTwo;
             }
         else if (board[0][2] == "X" && 
             board[1][2] == "X" &&
             board[2][2] == "X") {
-                console.log("player one wins!")
+                return winningPlayer = playerOne;
             }
         else if (board[0][2] == "O" && 
             board[1][2] == "O" &&
             board[2][2] == "O") {
-                console.log("player two wins!")
+                return winningPlayer = playerTwo;
             }
         else if (board[0][0] == "X" && 
             board[1][1] == "X" &&
             board[2][2] == "X") {
-                console.log("player one wins!")
+                return winningPlayer = playerOne;
             }
         else if (board[0][0] == "O" && 
             board[1][1] == "O" &&
             board[2][2] == "O") {
-                console.log("player two wins!")
+                return winningPlayer = playerTwo;
             }
         else if (board[0][2] == "X" && 
             board[1][1] == "X" &&
             board[2][0] == "X") {
-                console.log("player one wins!")
+                return winningPlayer = playerOne;
             }
         else if (board[0][2] == "O" && 
             board[1][1] == "O" &&
             board[2][0] == "O") {
-                console.log("player two wins!")
+                return winningPlayer = playerTwo;
             }
         else {
-            "lets play again!"
+            playRound();
         }
 }
 }
 };
 
-playRound();
-playRound();
-playRound();
-playRound();
-playRound();
-playRound();
-checkBoard();
+function declareWinner() {
+    if (winningPlayer === playerOne) {
+        console.log("player one wins!");
+    }
+    else if (winningPlayer === playerTwo) {
+        console.log("player two wins!")
+    };
+}
+
+function playGame() {
+    checkBoard();
+    declareWinner();
+}
+
+playGame();
