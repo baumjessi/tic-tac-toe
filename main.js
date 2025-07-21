@@ -19,7 +19,22 @@ let winningPlayer;
 
 function playRound() {
     let currentPlayer = playerOne;
-    console.log(currentPlayer);
+
+    // let cells = document.querySelectorAll(".cell");
+    // let cellArray = Array.from(cells);
+    // console.log(currentPlayer);
+    // cellArray.forEach(cell => {
+    //     cell.addEventListener("click", e => {
+    //         if (currentPlayer === playerOne) {
+    //             cell.textContent = "X"; 
+    //             currentPlayer = playerTwo;
+    //         }
+    //         else if (currentPlayer === playerTwo) {
+    //             cell.textContent = "O";
+    //             currentPlayer = playerOne;
+    //         }
+    // })});
+
     let playerOneChoice = window.prompt("player one enter coordinates");
     let playerOneChoiceUpCase = playerOneChoice.toUpperCase();
     for (let i = 0; i < board.length; i++) {
@@ -151,3 +166,27 @@ function playGame() {
 }
 
 playGame();
+
+ let currentPlayer = playerOne;
+ let playerDisplay = document.getElementById("player-display");
+
+    let cells = document.querySelectorAll(".cell");
+    let cellArray = Array.from(cells);
+    console.log(currentPlayer);
+    cellArray.forEach(cell => {
+        cell.addEventListener("click", e => {
+            if (!(cell.classList.contains("taken"))) {
+            if (currentPlayer === playerOne) {
+                cell.textContent = "X"; 
+                cell.classList.add("taken");
+                currentPlayer = playerTwo;
+                playerDisplay.textContent = "player  two's turn!";
+
+            }
+            else if (currentPlayer === playerTwo) {
+                cell.textContent = "O";
+                cell.classList.add("taken");
+                currentPlayer = playerOne;
+                playerDisplay.textContent = "player one's turn!"
+            }}
+    })});
