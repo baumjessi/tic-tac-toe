@@ -1,13 +1,8 @@
-function Board() {
-
-const board = [
+var board = [
   ["A1", "A2", "A3"],
   ["B1", "B2", "B3"],
   ["C1", "C2", "C3"],
 ];
-
-const getBoard = () => board;
-};
 
 console.log(board);
 
@@ -19,9 +14,11 @@ function createPlayers(name, mark) {
 }
 
 function clearBoard() {
-  for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < 3; j++) {
-      board[i][j] = 
+  board =  [
+  ["A1", "A2", "A3"],
+  ["B1", "B2", "B3"],
+  ["C1", "C2", "C3"],
+];
 }
 
 let playerOne = createPlayers("playerOne", "X");
@@ -31,8 +28,6 @@ let currentPlayer = playerOne;
 
 function playRound() {
   let currentPlayer = playerOne;
-  let cells = document.querySelectorAll(".cell");
-  let cellArray = Array.from(cells);
   console.log(currentPlayer);
 
   let playerOneChoice = window.prompt("player one enter coordinates");
@@ -188,13 +183,15 @@ console.log(currentPlayer);
 
 cellArray.forEach((cell) => {
   cell.addEventListener("click", (e) => {
-    let column = cell.getAttribute("column");
-    let row = cell.getAttribute("row");
+    let column = cell.dataset.column;
+    let row = cell.dataset.row;
     if (!cell.classList.contains("taken")) {
       if (currentPlayer === playerOne) {
         cell.disabled = false;
         cell.textContent = "X";
         cell.classList.add("taken");
+        console.log(cell.dataset.row);
+        console.log(cell.dataset.column);
         changeBoardFromDOM(row, column);
         currentPlayer = playerTwo;
         playerDisplay.textContent = "player two's turn!";
@@ -202,7 +199,9 @@ cellArray.forEach((cell) => {
         cell.disabled = false;
         cell.textContent = "O";
         cell.classList.add("taken");
-        changeBoardFromDOM(row, column)
+        console.log(row);
+        console.log(column);
+        changeBoardFromDOM(row, column);
         currentPlayer = playerOne;
         playerDisplay.textContent = "player one's turn!";
       }
@@ -216,7 +215,12 @@ cellArray.forEach((cell) => {
 function changeBoardFromDOM(row, column) {
     for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < 3; j++) {
-      if (row === i && column === i) {
-        board[i][j] == activePlayer.mark;
+      if (row == i && column == j) {
+        if (currentPlayer === playerOne) {
+          board[i][j] = "X";
+        }
+        if (currentPlayer === playerTwo) {
+          board[i][j] = "O";
+        }
       }
-    }}};
+    }}}; 
