@@ -1,84 +1,222 @@
-function Gameboard() {
-  const rows = 3;
-  const columns = 3;
-  const board = [];
+function Board() {
 
-    for (let i = 0; i < rows; i++) {
-    board[i] = [];
-    for (let j = 0; j < columns; j++) {
-      board[i].push(Cell());
+const board = [
+  ["A1", "A2", "A3"],
+  ["B1", "B2", "B3"],
+  ["C1", "C2", "C3"],
+];
+
+const getBoard = () => board;
+};
+
+console.log(board);
+
+function createPlayers(name, mark) {
+  return {
+    name: name,
+    mark: mark,
+  };
+}
+
+function clearBoard() {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < 3; j++) {
+      board[i][j] = 
+}
+
+let playerOne = createPlayers("playerOne", "X");
+let playerTwo = createPlayers("playerTwo", "O");
+let winningPlayer;
+let currentPlayer = playerOne;
+
+function playRound() {
+  let currentPlayer = playerOne;
+  let cells = document.querySelectorAll(".cell");
+  let cellArray = Array.from(cells);
+  console.log(currentPlayer);
+
+  let playerOneChoice = window.prompt("player one enter coordinates");
+  let playerOneChoiceUpCase = playerOneChoice.toUpperCase();
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < 3; j++) {
+      if (board[i][j] == "X" || board[i][j] == "O") {
+      }
+      if (board[i][j] === playerOneChoiceUpCase) {
+        board[i][j] = "X";
+        console.log(`player one chose ${playerOneChoice}!`);
+      }
     }
   }
-
-  const getBoard = () => board;
-
-  const markCell = (row, column, player) => {
-    const availableCells = board.filter((row) => row[column].getValue() === 0).map(row => row[column]);
-    if (!availableCells.length) return;
-    const chosenCell = board[row][column];
-    chosenCell.changeCell(player);
+  currentPlayer = playerTwo;
+  let playerTwoChoice = window.prompt("player two enter coordinates");
+  let playerTwoChoiceUpCase = playerTwoChoice.toUpperCase();
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < 3; j++) {
+      if (board[i][j].includes(playerTwoChoiceUpCase)) {
+        board[i][j] = "O";
+        console.log(`player two chose ${playerTwoChoice}!`);
+      }
     }
-
-
-  const printBoard = () => {
-    const boardWithCellValues = board.map((row) => row.map((cell) => cell.getValue()))
-    console.log(boardWithCellValues);
-  };
-
-  return { getBoard, markCell, printBoard };
+  }
+  console.log(board);
 }
 
-function Cell() {
-    let value = 0;
-
-    const changeCell = (player) => {
-        value = player;
+function checkBoard() {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < 3; j++) {
+      if (board[0][0] == "X" && board[0][1] == "X" && board[0][2] == "X") {
+        declareWinner();
+        return (winningPlayer = playerOne);
+      } else if (
+        board[0][0] == "O" &&
+        board[0][1] == "O" &&
+        board[0][2] == "O"
+      ) {
+        declareWinner();
+        return (winningPlayer = playerTwo);
+      } else if (
+        board[1][0] == "X" &&
+        board[1][1] == "X" &&
+        board[1][2] == "X"
+      ) {
+        return (winningPlayer = playerOne);
+      } else if (
+        board[1][0] == "O" &&
+        board[1][1] == "O" &&
+        board[1][2] == "O"
+      ) {
+        return (winningPlayer = playerTwo);
+      } else if (
+        board[2][0] == "X" &&
+        board[2][1] == "X" &&
+        board[2][2] == "X"
+      ) {
+        return (winningPlayer = playerOne);
+      } else if (
+        board[2][0] == "O" &&
+        board[2][1] == "O" &&
+        board[2][2] == "O"
+      ) {
+        return (winningPlayer = playerTwo);
+      } else if (
+        board[0][0] == "X" &&
+        board[1][0] == "X" &&
+        board[2][0] == "X"
+      ) {
+        return (winningPlayer = playerOne);
+      } else if (
+        board[0][0] == "O" &&
+        board[1][0] == "O" &&
+        board[2][0] == "O"
+      ) {
+        return (winningPlayer = playerTwo);
+      } else if (
+        board[0][1] == "X" &&
+        board[1][1] == "X" &&
+        board[2][1] == "X"
+      ) {
+        return (winningPlayer = playerOne);
+      } else if (
+        board[0][1] == "O" &&
+        board[1][1] == "O" &&
+        board[2][1] == "O"
+      ) {
+        return (winningPlayer = playerTwo);
+      } else if (
+        board[0][2] == "X" &&
+        board[1][2] == "X" &&
+        board[2][2] == "X"
+      ) {
+        return (winningPlayer = playerOne);
+      } else if (
+        board[0][2] == "O" &&
+        board[1][2] == "O" &&
+        board[2][2] == "O"
+      ) {
+        return (winningPlayer = playerTwo);
+      } else if (
+        board[0][0] == "X" &&
+        board[1][1] == "X" &&
+        board[2][2] == "X"
+      ) {
+        return (winningPlayer = playerOne);
+      } else if (
+        board[0][0] == "O" &&
+        board[1][1] == "O" &&
+        board[2][2] == "O"
+      ) {
+        return (winningPlayer = playerTwo);
+      } else if (
+        board[0][2] == "X" &&
+        board[1][1] == "X" &&
+        board[2][0] == "X"
+      ) {
+        return (winningPlayer = playerOne);
+      } else if (
+        board[0][2] == "O" &&
+        board[1][1] == "O" &&
+        board[2][0] == "O"
+      ) {
+        return (winningPlayer = playerTwo);
+      } else {
+        playRound();
+      }
     }
-
-    const getValue = () => value;
-
-    return { changeCell, getValue };
+  }
 }
 
-function GameController(
-    playerOneName = "Player One",
-    playerTwoName = "Player Two"
-) {
-    const board = Gameboard();
+function declareWinner() {
+  if (winningPlayer === playerOne) {
+    console.log("player one wins!");
+  } else if (winningPlayer === playerTwo) {
+    console.log("player two wins!");
+  }
+}
 
-    const players = [{
-        name: playerOneName,
-        mark: 1
-    },
-    {
-        name: playerTwoName,
-        mark: 2
-    }]
+function playGame() {
+  checkBoard();
+  declareWinner();
+}
 
-    let activePlayer = players[0];
+playGame();
 
-    const switchPlayerTurn = () => {
-            activePlayer = activePlayer === players[0] ? players[1] : players[0];
-    };
+let playerDisplay = document.getElementById("player-display");
 
-    const getActivePlayer = () => activePlayer;
+let cells = document.querySelectorAll(".cell");
+let cellArray = Array.from(cells);
+console.log(currentPlayer);
 
-    const printNewRound = () => {
-        board.printBoard();
-        console.log(`${getActivePlayer().name}'s turn!`);
-    };
-
-    const playRound = (row, column) => {
-        console.log(`${getActivePlayer().name} placed their mark!`)
-        board.markCell(row, column, getActivePlayer().mark);
-        switchPlayerTurn();
-        printNewRound();
+cellArray.forEach((cell) => {
+  cell.addEventListener("click", (e) => {
+    let column = cell.getAttribute("column");
+    let row = cell.getAttribute("row");
+    if (!cell.classList.contains("taken")) {
+      if (currentPlayer === playerOne) {
+        cell.disabled = false;
+        cell.textContent = "X";
+        cell.classList.add("taken");
+        changeBoardFromDOM(row, column);
+        currentPlayer = playerTwo;
+        playerDisplay.textContent = "player two's turn!";
+      } else if (currentPlayer === playerTwo) {
+        cell.disabled = false;
+        cell.textContent = "O";
+        cell.classList.add("taken");
+        changeBoardFromDOM(row, column)
+        currentPlayer = playerOne;
+        playerDisplay.textContent = "player one's turn!";
+      }
     }
+   else {
+    cell.disabled = true;
+   }
+  });
+});
 
-    printNewRound();
-
-    return { playRound, getActivePlayer };
-
-    }
-
-    const game = GameController();
+function changeBoardFromDOM(row, column) {
+    for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < 3; j++) {
+      if (row === i && column === i) {
+        board[i][j] == activePlayer.mark;
+      }
+    }}};
