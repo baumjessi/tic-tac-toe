@@ -1,3 +1,4 @@
+
 let playerOne = createPlayers("playerOne", "X");
 let playerTwo = createPlayers("playerTwo", "O");
 let winningPlayer;
@@ -9,6 +10,56 @@ var board = [
   ["B1", "B2", "B3"],
   ["C1", "C2", "C3"],
 ];
+
+// module pattern version of board
+
+const Gameboard = (function() {
+  let testBoard = [
+  ["A1", "A2", "A3"],
+  ["B1", "B2", "B3"],
+  ["C1", "C2", "C3"],
+];
+
+const getBoard = function() {
+  return testBoard;
+}
+
+const changeCell = function(row, column) {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < 3; j++) {
+      if (row == i && column == j) {
+        if (currentPlayer === playerOne) {
+          testBoard[i][j] = "X";
+          console.log(testBoard);
+        }
+        if (currentPlayer === playerTwo) {
+          testBoard[i][j] = "O";
+          console.log(testBoard);
+        }
+      }
+    }
+  }
+}
+
+const resetBoard = function() {
+  testBoard =  [
+  ["A1", "A2", "A3"],
+  ["B1", "B2", "B3"],
+  ["C1", "C2", "C3"],
+];
+}
+
+return {
+  getBoard,
+  changeCell,
+  resetBoard
+}
+
+})();
+
+console.log(Gameboard.getBoard());
+
+//everything below is not module pattern
 
 function resetGame() {
   cellArray.forEach((cell) => {
@@ -24,6 +75,7 @@ function resetGame() {
   
   winningPlayer = null;
   gameOver = false;
+  playerDisplay.textContent = "let's play!";
 }
 
 function createPlayers(name, mark) {
@@ -270,3 +322,5 @@ function declareWinner() {
   }
 }
 
+playGame();
+resetGame();
