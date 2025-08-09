@@ -32,11 +32,21 @@ const Players = (function () {
     return playerTwo;
   }
 
+  const changeWinState = function(player) {
+    if (player === playerOne) {
+      return playerOne.isWinner = true;
+    }
+    else if (player === playerTwo) {
+      return playerTwo.isWinner = true;
+    }
+  }
+
   return {
     switchCurrentPlayer,
     getCurrentPlayer,
     getPlayerOne,
     getPlayerTwo,
+    changeWinState,
   };
 })();
 
@@ -73,6 +83,125 @@ const Gameboard = (function () {
     }
   };
 
+  const checkBoard = function() {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < 3; j++) {
+      if (board[0][0] == "X" && board[0][1] == "X" && board[0][2] == "X") {
+        console.log("player one wins!");
+        return;
+      } else if (
+        board[0][0] == "O" &&
+        board[0][1] == "O" &&
+        board[0][2] == "O"
+      ) {
+        console.log("player two wins!");
+        return;
+      } else if (
+        board[1][0] == "X" &&
+        board[1][1] == "X" &&
+        board[1][2] == "X"
+      ) {
+        console.log("player one wins!");
+        return;
+      } else if (
+        board[1][0] == "O" &&
+        board[1][1] == "O" &&
+        board[1][2] == "O"
+      ) {
+        console.log("player two wins!");
+        return;
+      } else if (
+        board[2][0] == "X" &&
+        board[2][1] == "X" &&
+        board[2][2] == "X"
+      ) {
+        console.log("player one wins!");
+        return;
+      } else if (
+        board[2][0] == "O" &&
+        board[2][1] == "O" &&
+        board[2][2] == "O"
+      ) {
+        console.log("player two wins!");
+        return;
+      } else if (
+        board[0][0] == "X" &&
+        board[1][0] == "X" &&
+        board[2][0] == "X"
+      ) {
+        console.log("player one wins!");
+        return;
+      } else if (
+        board[0][0] == "O" &&
+        board[1][0] == "O" &&
+        board[2][0] == "O"
+      ) {
+        console.log("player two wins!");
+        return;
+      } else if (
+        board[0][1] == "X" &&
+        board[1][1] == "X" &&
+        board[2][1] == "X"
+      ) {
+        console.log("player one wins!");
+        return;
+      } else if (
+        board[0][1] == "O" &&
+        board[1][1] == "O" &&
+        board[2][1] == "O"
+      ) {
+        console.log("player two wins!");
+        return;
+      } else if (
+        board[0][2] == "X" &&
+        board[1][2] == "X" &&
+        board[2][2] == "X"
+      ) {
+        console.log("player one wins!");
+        return;
+      } else if (
+        board[0][2] == "O" &&
+        board[1][2] == "O" &&
+        board[2][2] == "O"
+      ) {
+        console.log("player two wins!");
+        return;
+      } else if (
+        board[0][0] == "X" &&
+        board[1][1] == "X" &&
+        board[2][2] == "X"
+      ) {
+        console.log("player one wins!");
+        return;
+      } else if (
+        board[0][0] == "O" &&
+        board[1][1] == "O" &&
+        board[2][2] == "O"
+      ) {
+        console.log("player two wins!");
+        return;
+      } else if (
+        board[0][2] == "X" &&
+        board[1][1] == "X" &&
+        board[2][0] == "X"
+      ) {
+        console.log("player one wins!");
+        return;
+      } else if (
+        board[0][2] == "O" &&
+        board[1][1] == "O" &&
+        board[2][0] == "O"
+      ) {
+        console.log("player two wins!");
+        return;
+      } else {
+        console.log("still playing");
+        return;
+      }
+    }
+  }
+}
+
   const resetBoard = function () {
     board = [
       ["A1", "A2", "A3"],
@@ -85,185 +214,13 @@ const Gameboard = (function () {
     getBoard,
     changeCell,
     resetBoard,
+    checkBoard,
   };
 })();
 
 console.log(Gameboard.getBoard());
 
-function playGame() {
 
-}
-
-//everything below is not module pattern
-
-// function resetGame() {
-//   cellArray.forEach((cell) => {
-//     cell.textContent = "";
-//     cell.disabled = false;
-//     cell.classList.remove("taken");
-//   });
-//   board = [
-//     ["A1", "A2", "A3"],
-//     ["B1", "B2", "B3"],
-//     ["C1", "C2", "C3"],
-//   ];
-
-//   winningPlayer = null;
-//   gameOver = false;
-//   playerDisplay.textContent = "let's play!";
-// }
-
-function checkBoard(row, column) {
-  let board = Gameboard.getBoard;
-  for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < 3; j++) {
-      if (board[0][0] == "X" && board[0][1] == "X" && board[0][2] == "X") {
-        console.log("player one wins!");
-        winningPlayer = playerOne;
-        declareWinner(winningPlayer);
-        return;
-      } else if (
-        board[0][0] == "O" &&
-        board[0][1] == "O" &&
-        board[0][2] == "O"
-      ) {
-        console.log("player two wins!");
-        winningPlayer = playerTwo;
-        declareWinner(winningPlayer);
-        return;
-      } else if (
-        board[1][0] == "X" &&
-        board[1][1] == "X" &&
-        board[1][2] == "X"
-      ) {
-        console.log("player one wins!");
-        winningPlayer = playerOne;
-        declareWinner(winningPlayer);
-        return;
-      } else if (
-        board[1][0] == "O" &&
-        board[1][1] == "O" &&
-        board[1][2] == "O"
-      ) {
-        console.log("player two wins!");
-        winningPlayer = playerTwo;
-        declareWinner(winningPlayer);
-        return;
-      } else if (
-        board[2][0] == "X" &&
-        board[2][1] == "X" &&
-        board[2][2] == "X"
-      ) {
-        console.log("player one wins!");
-        winningPlayer = playerOne;
-        declareWinner(winningPlayer);
-        return;
-      } else if (
-        board[2][0] == "O" &&
-        board[2][1] == "O" &&
-        board[2][2] == "O"
-      ) {
-        console.log("player two wins!");
-        winningPlayer = playerTwo;
-        declareWinner(winningPlayer);
-        return;
-      } else if (
-        board[0][0] == "X" &&
-        board[1][0] == "X" &&
-        board[2][0] == "X"
-      ) {
-        console.log("player one wins!");
-        winningPlayer = playerOne;
-        declareWinner(winningPlayer);
-        return;
-      } else if (
-        board[0][0] == "O" &&
-        board[1][0] == "O" &&
-        board[2][0] == "O"
-      ) {
-        console.log("player two wins!");
-        winningPlayer = playerTwo;
-        declareWinner(winningPlayer);
-        return;
-      } else if (
-        board[0][1] == "X" &&
-        board[1][1] == "X" &&
-        board[2][1] == "X"
-      ) {
-        console.log("player one wins!");
-        winningPlayer = playerOne;
-        declareWinner(winningPlayer);
-        return;
-      } else if (
-        board[0][1] == "O" &&
-        board[1][1] == "O" &&
-        board[2][1] == "O"
-      ) {
-        console.log("player two wins!");
-        winningPlayer = playerTwo;
-        declareWinner(winningPlayer);
-        return;
-      } else if (
-        board[0][2] == "X" &&
-        board[1][2] == "X" &&
-        board[2][2] == "X"
-      ) {
-        console.log("player one wins!");
-        winningPlayer = playerOne;
-        declareWinner(winningPlayer);
-        return;
-      } else if (
-        board[0][2] == "O" &&
-        board[1][2] == "O" &&
-        board[2][2] == "O"
-      ) {
-        console.log("player two wins!");
-        winningPlayer = playerTwo;
-        declareWinner(winningPlayer);
-        return;
-      } else if (
-        board[0][0] == "X" &&
-        board[1][1] == "X" &&
-        board[2][2] == "X"
-      ) {
-        console.log("player one wins!");
-        winningPlayer = playerOne;
-        declareWinner(winningPlayer);
-        return;
-      } else if (
-        board[0][0] == "O" &&
-        board[1][1] == "O" &&
-        board[2][2] == "O"
-      ) {
-        console.log("player two wins!");
-        winningPlayer = playerTwo;
-        declareWinner(winningPlayer);
-        return;
-      } else if (
-        board[0][2] == "X" &&
-        board[1][1] == "X" &&
-        board[2][0] == "X"
-      ) {
-        console.log("player one wins!");
-        winningPlayer = playerOne;
-        declareWinner(winningPlayer);
-        return;
-      } else if (
-        board[0][2] == "O" &&
-        board[1][1] == "O" &&
-        board[2][0] == "O"
-      ) {
-        console.log("player two wins!");
-        winningPlayer = playerTwo;
-        declareWinner(winningPlayer);
-        return;
-      } else {
-        console.log("still playing");
-        playRound(row, column);
-      }
-    }
-  }
-}
 
 // let playerDisplay = document.getElementById("player-display");
 // let cells = document.querySelectorAll(".cell");
@@ -314,17 +271,16 @@ function checkBoard(row, column) {
 //   });
 // }
 
-// function declareWinner() {
-//   endGame();
-//   gameOver = true;
-//   if (winningPlayer === playerOne) {
-//     console.log("declare winner is working");
-//     playerDisplay.textContent = "player one wins!";
-//   } else if (winningPlayer === playerTwo) {
-//     console.log("declare winnder is working!");
-//     playerDisplay.textContent = "player two wins!";
-//   }
-// }
+function declareWinner() {
+  if (winningPlayer === playerOne) {
+    
+    console.log("declare winner is working");
+    playerDisplay.textContent = "player one wins!";
+  } else if (winningPlayer === playerTwo) {
+    console.log("declare winnder is working!");
+    playerDisplay.textContent = "player two wins!";
+  }
+}
 
 // playGame();
 // resetGame();
