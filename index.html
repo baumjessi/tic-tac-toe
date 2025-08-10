@@ -7,7 +7,7 @@
     <title>tic! tac! toe!</title>
 </head>
 <body>
-    <h1>tic! tac! toe!</h1>
+    <h1 id="tic-tac-toe">tic! tac! toe!</h1>
     <p id="player-display">let's play!</p>
     <div class="board">
         <button class="cell" data-row="0" data-column="0"></button>
@@ -20,7 +20,22 @@
         <button class="cell" data-row="2" data-column="1"></button>
         <button class="cell" data-row="2" data-column="2"></button>
     </div>
-    <p>created by jessi b. for the odin project</p>
+    <dialog id="lets-play-dialog">
+        <form id="lets-play-form">
+            <label for="player-one">player one's name:</label>
+            <input type="text" id="player-one" name="player-one">
+            <label for="player-two">player two's name:</label>
+            <input type="text" id="player-two" name="player-two">
+            <button class="dialog-button" type="submit" form="lets-play-form">let's play!</button>
+        </form>
+    </dialog>
+    <dialog id="winner-box">
+        <form id="winner-box-form">
+        <p>player x wins!</p>
+        <button class="dialog-button" type="submit" form="lets-play-form">play again?</button>
+        </form>
+    </dialog>
+    <p id="jessi">created by jessi b. for the odin project</p>
     <script src="main.js"></script>
 </body>
 </html>
