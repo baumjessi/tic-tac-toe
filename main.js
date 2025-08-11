@@ -224,64 +224,66 @@ const Gameboard = (function () {
   };
 })();
 
-function screenController() {
-let playerDisplay = document.getElementById("player-display");
+const GameController = (function() {
+  let playerDisplay = document.getElementById("player-display");
   let cells = document.querySelectorAll(".cell");
   let cellArray = Array.from(cells);
   let board = Gameboard.getBoard();
   let playerOne = Players.getPlayerOne();
   let playerTwo = Players.getPlayerTwo();
 
-function playGame() {
-  playerDisplay.textContent = "player one's turn!";
-  Players.setCurrentPlayer(Players.getPlayerOne());
-  cellArray.forEach((cell) => {
-    cell.addEventListener("click", (e) => {
-      let column = cell.dataset.column;
-      let row = cell.dataset.row;
-      if (!cell.classList.contains("taken") && !cell.classList.contains("locked")) {
-        cell.disabled = false;
-        Gameboard.changeCell(row, column);
-        cell.classList.add("taken");
-        cell.textContent = `${Players.getCurrentMark()}`;
-        Players.switchCurrentPlayer();
-        console.log(board);
-        playerDisplay.textContent = `${Players.getCurrentPlayer().name.toLowerCase()}'s turn!`;
-        Gameboard.checkBoard();
-        if (Players.getPlayerOne().isWinner === true) {
-          playerDisplay.textContent = `${playerOne.name.toLowerCase()} wins!`;
-          endGame();
-          return;
-        } else if (Players.getPlayerTwo().isWinner === true) {
-          playerDisplay.textContent = `${playerTwo.name.toLowerCase()} wins!`;
-          endGame();
-          return;
-        }}})})
-      
-      }
-
-    function endGame() {
-       cellArray.forEach((cell) => {
-        cell.classList.add("locked");
-      })
-      Gameboard.resetBoard();
-      playerOne.name = "player one";
-      playerTwo.name = "player two";
-    }
-
-    playGame();
-
-    };
-
-    screenController();
-
-    let ticTacToe = document.getElementById("tic-tac-toe");
-    let letsPlay = document.getElementById("lets-play-dialog");
-    ticTacToe.addEventListener("click", (e)=> {
-      letsPlay.showModal();
+  function playGame() {
+    playerDisplay.textContent = "player one's turn!";
+    Players.setCurrentPlayer(Players.getPlayerOne());
+    cellArray.forEach((cell) => {
+      cell.addEventListener("click", (e) => {
+        let column = cell.dataset.column;
+        let row = cell.dataset.row;
+        if (
+          !cell.classList.contains("taken") &&
+          !cell.classList.contains("locked")
+        ) {
+          cell.disabled = false;
+          Gameboard.changeCell(row, column);
+          cell.classList.add("taken");
+          cell.textContent = `${Players.getCurrentMark()}`;
+          Players.switchCurrentPlayer();
+          console.log(board);
+          playerDisplay.textContent = `${Players.getCurrentPlayer().name.toLowerCase()}'s turn!`;
+          Gameboard.checkBoard();
+          if (Players.getPlayerOne().isWinner === true) {
+            playerDisplay.textContent = `${playerOne.name.toLowerCase()} wins!`;
+            endGame();
+            return;
+          } else if (Players.getPlayerTwo().isWinner === true) {
+            playerDisplay.textContent = `${playerTwo.name.toLowerCase()} wins!`;
+            endGame();
+            return;
+          }
+        }
+      });
     });
-    let jessi = document.getElementById("jessi");
-    let winnerBox = document.getElementById("winner-box");
-    jessi.addEventListener("click", (e)=> {
-      winnerBox.showModal();
+  }
+
+  function endGame() {
+    cellArray.forEach((cell) => {
+      cell.classList.add("locked");
     });
+    Gameboard.resetBoard();
+    playerOne.name = "player one";
+    playerTwo.name = "player two";
+  }
+
+  return {endGame, playGame}
+})();
+
+let ticTacToe = document.getElementById("tic-tac-toe");
+
+ticTacToe.addEventListener("click", (e) => {
+  letsPlay.showModal();
+});
+let jessi = document.getElementById("jessi");
+let winnerBox = document.getElementById("winner-box");
+jessi.addEventListener("click", (e) => {
+  winnerBox.showModal();
+});
