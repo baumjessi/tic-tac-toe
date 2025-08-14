@@ -21,17 +21,17 @@
         <button class="cell" data-row="2" data-column="2"></button>
         <dialog id="lets-play-dialog">
         <form id="lets-play-form">
-            <label for="player-one">player one's name:</label>
-            <input type="text" id="player-one" name="player-one">
-            <label for="player-two">player two's name:</label>
-            <input type="text" id="player-two" name="player-two">
+            <label for="p1-name-input">player one's name:</label>
+            <input type="text" id="p1-name-input" name="p1-name-input">
+            <label for="p2-name-input">player two's name:</label>
+            <input type="text" id="p2-name-input" name="p2-name-input">
             <button class="dialog-button" id="lets-play-button" type="submit" form="lets-play-form">let's play!</button>
         </form>
     </dialog>
-    <dialog id="winner-box">
-        <form id="winner-box-form">
-        <p>player x wins!</p>
-        <button class="dialog-button" type="submit" form="lets-play-form">play again?</button>
+    <dialog id="winner-dialog">
+        <form id="winner-dialog-form">
+        <p id="winner-dialog-text">player x wins!</p>
+        <button class="dialog-button" id="winner-button" type="submit" form="winner-dialog-form">play again?</button>
         </form>
     </dialog>
     </div>
