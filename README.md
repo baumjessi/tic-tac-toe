@@ -7,11 +7,12 @@ include scope, constructors, factory functions, and IIFEs. Responsive design has
 account when designing this game. It works best on a desktop computer rather than a mobile device.
 
 ## How to play
-Click to play! This is a classic game of tic-tac-toe designed to be played by two human players. Players can enter their names and click to place 
-their marks. Once the game is complete, a dialog will appear inviting users to play again.
+[Click to play!](https://baumjessi.github.io/tic-tac-toe)    
+
+This is a classic game of tic-tac-toe designed to be played by two human players. Players can enter their names and click to place their marks. Once the game is complete, a dialog will appear inviting users to play again.
 
 ## Media
-Font: 
+**Font:** Courier Prime Code from [Font Squirrel](https://www.fontsquirrel.com/fonts/courier-prime-code)
 
 ## Found a bug or want to talk code?
 Email me at hellojessib@outlook.com. Thanks! 
